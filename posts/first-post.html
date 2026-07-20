@@ -3,12 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>第一篇文章</title>
+  <title>我的第一篇博客文章 - MyBlog</title>
+  <script src="../js/theme-init.js"></script>
   <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
-  <h1>第一篇文章</h1>
+<body data-blog-root="../">
+  <header class="site-header">
+    <nav class="container nav-container" aria-label="主导航">
+      <a class="site-title" href="../index.html">MyBlog</a>
+      <ul class="nav-links">
+        <li><a class="nav-link" href="../index.html">首页</a></li>
+        <li><a class="nav-link active" href="../posts.html" aria-current="page">文章</a></li>
+        <li><a class="nav-link" href="../about.html">关于</a></li>
+      </ul>
+      <button class="theme-switcher" type="button" aria-label="当前主题：浅色。切换到 Ayu 深色">
+        <span class="theme-switcher-icon" aria-hidden="true">☀</span>
+      </button>
+    </nav>
+  </header>
 
+  <main class="container page-content article-page">
+    <article class="article-content" data-article-slug="first-post">
+      <p class="content-status">正在加载文章…</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 MyBlog</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" type="button" aria-label="返回顶部" aria-hidden="true">↑</button>
   <script src="../js/main.js"></script>
+  <script src="../js/blog.js"></script>
 </body>
 </html>

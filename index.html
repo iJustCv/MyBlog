@@ -3,12 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>博客首页</title>
+  <title>MyBlog - 记录技术、项目与生活</title>
+  <script src="js/theme-init.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>博客首页</h1>
+  <header class="site-header">
+    <nav class="container nav-container" aria-label="主导航">
+      <a class="site-title" href="index.html">MyBlog</a>
+      <ul class="nav-links">
+        <li><a class="nav-link active" href="index.html" aria-current="page">首页</a></li>
+        <li><a class="nav-link" href="posts.html">文章</a></li>
+        <li><a class="nav-link" href="about.html">关于</a></li>
+      </ul>
+      <button class="theme-switcher" type="button" aria-label="当前主题：浅色。切换到 Ayu 深色">
+        <span class="theme-switcher-icon" aria-hidden="true">☀</span>
+      </button>
+    </nav>
+  </header>
 
+  <main class="container page-content home-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">MyBlog</h1>
+      <p>记录技术学习、项目实践、生活思考</p>
+      <div class="hero-actions">
+        <a class="button" href="posts.html">查看文章</a>
+        <a class="button button-secondary" href="about.html">关于我</a>
+      </div>
+    </section>
+
+    <section class="home-section" aria-labelledby="latest-posts-title">
+      <h2 id="latest-posts-title">最新文章</h2>
+      <div class="post-grid" data-latest-posts>
+        <p class="content-status">正在加载最新文章…</p>
+      </div>
+    </section>
+
+    <section class="about-blog" aria-labelledby="about-blog-title">
+      <h2 id="about-blog-title">关于博客</h2>
+      <p>这是一个记录学习、技术实践与个人思考的博客。</p>
+      <a class="read-more" href="about.html">了解更多</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 MyBlog</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" type="button" aria-label="返回顶部" aria-hidden="true">↑</button>
   <script src="js/main.js"></script>
+  <script src="js/blog.js"></script>
 </body>
 </html>

@@ -3,12 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>关于我</title>
+  <title>关于我 - MyBlog</title>
+  <script src="js/theme-init.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>关于我</h1>
+  <header class="site-header">
+    <nav class="container nav-container" aria-label="主导航">
+      <a class="site-title" href="index.html">MyBlog</a>
+      <ul class="nav-links">
+        <li><a class="nav-link" href="index.html">首页</a></li>
+        <li><a class="nav-link" href="posts.html">文章</a></li>
+        <li><a class="nav-link active" href="about.html" aria-current="page">关于</a></li>
+      </ul>
+      <button class="theme-switcher" type="button" aria-label="当前主题：浅色。切换到 Ayu 深色">
+        <span class="theme-switcher-icon" aria-hidden="true">☀</span>
+      </button>
+    </nav>
+  </header>
 
+  <main class="container page-content about-page">
+    <header class="page-intro about-intro">
+      <p class="eyebrow">ABOUT</p>
+      <h1>关于我</h1>
+      <p>你好，欢迎来到 MyBlog。这里是我整理学习过程、分享实践经验和记录生活思考的地方。</p>
+    </header>
+
+    <div class="about-grid">
+      <section class="info-card" aria-labelledby="author-title">
+        <h2 id="author-title">关于作者</h2>
+        <p>一名持续学习的技术爱好者，希望通过写作梳理知识，也把真实的实践过程分享出来。</p>
+      </section>
+
+      <section class="info-card" aria-labelledby="tech-title">
+        <h2 id="tech-title">技术方向</h2>
+        <p>目前关注前端基础、静态网站开发、Web 标准，以及简单、易维护的个人项目。</p>
+        <ul class="simple-list">
+          <li>HTML、CSS 与 JavaScript</li>
+          <li>响应式网页与可访问性</li>
+          <li>Git 与 GitHub Pages</li>
+        </ul>
+      </section>
+
+      <section class="info-card" aria-labelledby="interests-title">
+        <h2 id="interests-title">兴趣方向</h2>
+        <p>除了技术，也喜欢阅读、写作、观察日常生活，并把有价值的想法整理成长期记录。</p>
+      </section>
+
+      <section class="info-card" aria-labelledby="contact-title">
+        <h2 id="contact-title">联系方式</h2>
+        <dl class="contact-list">
+          <div>
+            <dt>邮箱</dt>
+            <dd>待补充</dd>
+          </div>
+          <div>
+            <dt>GitHub</dt>
+            <dd>待补充</dd>
+          </div>
+        </dl>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 MyBlog</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" type="button" aria-label="返回顶部" aria-hidden="true">↑</button>
   <script src="js/main.js"></script>
 </body>
 </html>
