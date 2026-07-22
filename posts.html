@@ -3,54 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MyBlog 的全部技术文章、项目记录与生活随笔。">
   <title>全部文章 - MyBlog</title>
   <script src="js/theme-init.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="site-header">
-    <nav class="container nav-container" aria-label="主导航">
-      <a class="site-title" href="index.html">MyBlog</a>
-      <ul class="nav-links">
+    <nav class="wide-container nav-container" aria-label="主导航">
+      <a class="site-brand" href="index.html"><span class="brand-mark" aria-hidden="true">M</span><span>MyBlog</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu"><span class="sr-only">展开导航</span><span aria-hidden="true">☰</span></button>
+      <ul class="nav-links" id="site-menu">
         <li><a class="nav-link" href="index.html">首页</a></li>
         <li><a class="nav-link active" href="posts.html" aria-current="page">文章</a></li>
+        <li><a class="nav-link" href="archive.html">归档</a></li>
         <li><a class="nav-link" href="about.html">关于</a></li>
       </ul>
-      <button class="theme-switcher" type="button" aria-label="当前主题：浅色。切换到 Ayu 深色">
-        <span class="theme-switcher-icon" aria-hidden="true">☀</span>
-      </button>
+      <button class="theme-switcher" type="button" aria-label="切换深色模式"><span class="theme-switcher-icon" aria-hidden="true">☾</span></button>
     </nav>
   </header>
 
-  <main class="container page-content posts-page">
-    <header class="page-intro">
-      <h1>全部文章</h1>
-      <p>这里记录技术学习、项目实践与个人思考</p>
-    </header>
+  <main class="wide-container page-shell page-shell-list">
+    <aside class="profile-sidebar compact-sidebar">
+      <div class="sidebar-card profile-card"><div class="avatar avatar-small" aria-hidden="true"><span>GX</span></div><h2>高祥的博客</h2><p>技术、项目与思考的长期记录。</p></div>
+      <nav class="sidebar-card quick-nav" aria-label="快捷导航">
+        <a href="index.html"><span>⌂</span> 首页</a><a class="active" href="posts.html"><span>✦</span> 全部文章</a><a href="archive.html"><span>◷</span> 时间归档</a><a href="about.html"><span>◎</span> 关于本站</a>
+      </nav>
+    </aside>
 
-    <section class="filter-section" aria-labelledby="filter-title">
-      <h2 id="filter-title">文章分类</h2>
-      <div class="filter-buttons">
-        <button class="filter-button active" type="button" aria-pressed="true">全部</button>
-        <button class="filter-button" type="button" aria-pressed="false">技术</button>
-        <button class="filter-button" type="button" aria-pressed="false">随笔</button>
-        <button class="filter-button" type="button" aria-pressed="false">项目</button>
-      </div>
-    </section>
+    <div class="main-column">
+      <header class="page-intro">
+        <p class="eyebrow">ALL POSTS</p>
+        <h1>所有文章</h1>
+        <p>让每一次探索都有迹可循。按主题筛选，找到你感兴趣的内容。</p>
+      </header>
+      <section class="filter-panel" aria-labelledby="filter-title">
+        <div class="filter-heading"><h2 id="filter-title">主题筛选</h2><span data-filter-result>全部文章</span></div>
+        <div class="filter-buttons" data-filter-controls></div>
+      </section>
+      <section class="article-list" aria-label="文章列表" data-article-list><p class="content-status">正在加载文章列表…</p></section>
+    </div>
 
-    <section class="article-list" aria-label="文章列表" data-article-list>
-      <p class="content-status">正在加载文章列表…</p>
-    </section>
+    <aside class="widget-sidebar">
+      <section class="sidebar-card"><h2>探索标签</h2><div class="tag-cloud" data-tag-cloud><span class="mini-status">读取中…</span></div></section>
+      <section class="sidebar-card"><div class="widget-heading"><h2>最近更新</h2><span class="status-dot"></span></div><div class="recent-list" data-recent-posts><p class="mini-status">读取中…</p></div></section>
+      <a class="sidebar-card archive-cta" href="archive.html"><span>按时间浏览</span><strong>前往归档 →</strong></a>
+    </aside>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2026 MyBlog</p>
-    </div>
-  </footer>
-
+  <footer class="site-footer"><div class="wide-container footer-inner"><p>© <span data-current-year>2026</span> MyBlog</p><p>保持好奇，持续记录 ✦</p></div></footer>
   <button class="back-to-top" type="button" aria-label="返回顶部" aria-hidden="true">↑</button>
-  <script src="js/main.js"></script>
-  <script src="js/blog.js"></script>
+  <script src="js/main.js"></script><script src="js/blog.js"></script>
 </body>
 </html>

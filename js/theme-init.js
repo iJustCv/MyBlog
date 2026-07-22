@@ -1,16 +1,20 @@
 (() => {
   const storageKey = "myblog-theme";
-  const supportedThemes = ["light", "ayu-dark", "purple-cyan"];
-  let theme = "light";
+  let theme;
 
   try {
     const savedTheme = localStorage.getItem(storageKey);
-
-    if (supportedThemes.includes(savedTheme)) {
+    if (savedTheme === "light" || savedTheme === "dark") {
       theme = savedTheme;
+    } else if (savedTheme === "ayu-dark" || savedTheme === "purple-cyan") {
+      theme = "dark";
     }
   } catch {
-    // 无法读取本地存储时使用默认浅色主题。
+    // 本地存储不可用时跟随系统设置。
+  }
+
+  if (!theme) {
+    theme = window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }
 
   document.documentElement.dataset.theme = theme;

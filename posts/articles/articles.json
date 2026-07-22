@@ -5,6 +5,7 @@
     "date": "2026-07-10",
     "dateText": "2026 年 7 月 10 日",
     "summary": "从这里开始记录博客搭建过程，以及技术学习、AI 辅助开发与未来规划。",
+    "category": "随笔",
     "tags": ["博客", "学习记录", "AI"],
     "markdown": "posts/first-post.md"
   },
@@ -14,6 +15,7 @@
     "date": "2026-07-05",
     "dateText": "2026 年 7 月 5 日",
     "summary": "整理容器、网格和响应式设计的基础思路，让页面在不同设备上保持清晰易读。",
+    "category": "技术",
     "tags": ["技术", "CSS"],
     "markdown": null
   },
@@ -23,6 +25,7 @@
     "date": "2026-07-01",
     "dateText": "2026 年 7 月 1 日",
     "summary": "记录静态网站从本地整理到公开发布的基本流程，以及部署过程中需要注意的路径问题。",
+    "category": "项目",
     "tags": ["项目", "GitHub Pages"],
     "markdown": null
   },
@@ -32,6 +35,7 @@
     "date": "2026-06-25",
     "dateText": "2026 年 6 月 25 日",
     "summary": "梳理变量、函数与事件处理等常用概念，为后续实现简单的页面交互打好基础。",
+    "category": "技术",
     "tags": ["技术", "JavaScript"],
     "markdown": null
   },
@@ -41,6 +45,7 @@
     "date": "2026-06-18",
     "dateText": "2026 年 6 月 18 日",
     "summary": "尝试把零散的想法写成完整文字，在持续回顾中发现生活与学习里的细微变化。",
+    "category": "随笔",
     "tags": ["随笔", "生活"],
     "markdown": null
   },
@@ -48,8 +53,9 @@
     "slug": "test",
     "title": "记录测试",
     "date": "2026-07-13",
-    "dateText": "2026 年 6 月 18 日",
+    "dateText": "2026 年 7 月 13 日",
     "summary": "这是测试",
+    "category": "随笔",
     "tags": ["随笔", "测试呀"],
     "markdown": "posts/test.md"
   }
