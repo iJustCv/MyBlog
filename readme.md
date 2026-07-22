@@ -1,4 +1,4 @@
-# MyBlog
+# choppy
 
 一个部署在 GitHub Pages 上的纯静态个人博客。视觉设计借鉴 Stellar 的简洁、留白与知识库式布局，并加入克制的紫色、青色和星空元素。
 
@@ -14,7 +14,7 @@
 ## 项目结构
 
 - `index.html`：博客首页
-- `posts.html`：文章列表与分类筛选
+- `posts.html`：旧文章列表地址的兼容跳转页
 - `archive.html`：按年份展示的文章归档
 - `about.html`：关于页面
 - `posts/first-post.html`：所有 Markdown 文章共用的阅读页面
@@ -54,7 +54,7 @@ python -m http.server 8000
 }
 ```
 
-文章会自动出现在首页、文章列表、侧边栏和归档页面中。阅读页继续由 `posts/first-post.html` 动态渲染，不需要为每篇文章创建 HTML。
+文章会自动出现在首页文章列表和归档页面中。阅读页继续由 `posts/first-post.html` 动态渲染，不需要为每篇文章创建 HTML。
 
 如果 `markdown` 为 `null`，文章会显示为“即将发布”，不会产生空链接。
 

@@ -3,33 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="按时间浏览 MyBlog 的全部文章。">
-  <title>文章归档 - MyBlog</title>
+  <meta name="description" content="按时间浏览 choppy 的全部文章。">
+  <meta name="author" content="choppy">
+  <title>文章归档 - choppy</title>
   <script src="js/theme-init.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="site-header">
     <nav class="wide-container nav-container" aria-label="主导航">
-      <a class="site-brand" href="index.html"><span class="brand-mark" aria-hidden="true">M</span><span>MyBlog</span></a>
+      <a class="site-brand" href="index.html"><img class="brand-avatar" src="images/choppy-avatar.png" alt=""><span>choppy</span></a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu"><span class="sr-only">展开导航</span><span aria-hidden="true">☰</span></button>
-      <ul class="nav-links" id="site-menu"><li><a class="nav-link" href="index.html">首页</a></li><li><a class="nav-link" href="posts.html">文章</a></li><li><a class="nav-link active" href="archive.html" aria-current="page">归档</a></li><li><a class="nav-link" href="about.html">关于</a></li></ul>
+      <ul class="nav-links" id="site-menu"><li><a class="nav-link" href="index.html">首页</a></li><li><a class="nav-link active" href="archive.html" aria-current="page">归档</a></li><li><a class="nav-link" href="about.html">关于</a></li></ul>
       <button class="theme-switcher" type="button" aria-label="切换深色模式"><span class="theme-switcher-icon" aria-hidden="true">☾</span></button>
     </nav>
   </header>
-  <main class="wide-container archive-layout">
-    <section class="archive-main">
-      <header class="page-intro archive-intro"><p class="eyebrow">ARCHIVE</p><h1>时间归档</h1><p>沿着时间轴，回看每一次学习、尝试与思考。</p><div class="archive-count"><strong data-archive-count>—</strong><span>篇记录</span></div></header>
-      <div class="archive-timeline" data-archive-list><p class="content-status">正在整理时间坐标…</p></div>
-    </section>
-    <aside class="widget-sidebar archive-sidebar">
-      <section class="sidebar-card"><p class="widget-label">OVERVIEW</p><h2>写作地图</h2><p>文章按发布日期自动归档，数据仍来自同一个 articles.json 文件。</p></section>
-      <section class="sidebar-card stat-widget" data-site-stats><div><strong>—</strong><span>文章</span></div><div><strong>—</strong><span>标签</span></div></section>
-      <section class="sidebar-card"><h2>探索标签</h2><div class="tag-cloud" data-tag-cloud><span class="mini-status">读取中…</span></div></section>
-    </aside>
+  <main class="wide-container archive-only">
+    <h1>归档</h1>
+    <div class="archive-timeline" data-archive-list><p class="content-status">正在整理时间坐标…</p></div>
   </main>
-  <footer class="site-footer"><div class="wide-container footer-inner"><p>© <span data-current-year>2026</span> MyBlog</p><p>保持好奇，持续记录 ✦</p></div></footer>
-  <button class="back-to-top" type="button" aria-label="返回顶部" aria-hidden="true">↑</button>
+  <footer class="site-footer"><div class="wide-container footer-inner"><p>© <span data-current-year>2026</span> choppy</p><p>保持好奇，持续记录 ✦</p></div></footer>
+  <button class="back-to-top" type="button" aria-label="返回顶部" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M6.5 10.5 12 5l5.5 5.5"/></svg></button>
   <script src="js/main.js"></script><script src="js/blog.js"></script>
 </body>
 </html>

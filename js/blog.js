@@ -20,18 +20,6 @@
     year: "numeric", month: "long", day: "numeric"
   }).format(new Date(`${article.date}T00:00:00`));
 
-  const createTagList = (tags = []) => {
-    const list = document.createElement("ul");
-    list.className = "tag-list";
-    list.setAttribute("aria-label", "文章标签");
-    tags.forEach((tag) => {
-      const item = document.createElement("li");
-      item.textContent = tag;
-      list.append(item);
-    });
-    return list;
-  };
-
   const appendArticleLink = (heading, article) => {
     const href = getArticleUrl(article);
     if (href) heading.append(createLink(article.title, href));
@@ -42,60 +30,39 @@
     }
   };
 
-  const createPostCard = (article) => {
-    const card = document.createElement("article");
-    card.className = `post-card${article.markdown ? "" : " is-draft"}`;
-    const top = document.createElement("div");
-    top.className = "post-card-top";
-    const category = document.createElement("span");
-    category.className = "post-category";
-    category.textContent = article.category || article.tags?.[0] || "随笔";
-    const date = document.createElement("time");
-    date.dateTime = article.date;
-    date.textContent = formatDate(article);
-    top.append(category, date);
-    const heading = document.createElement("h3");
-    appendArticleLink(heading, article);
-    const summary = document.createElement("p");
-    summary.textContent = article.summary;
-    const footer = document.createElement("div");
-    footer.className = "post-card-footer";
-    footer.append(createTagList(article.tags));
-    if (article.markdown) footer.append(createLink("阅读全文 →", getArticleUrl(article), "read-more"));
-    else {
-      const draft = document.createElement("span");
-      draft.className = "draft-label";
-      draft.textContent = "即将发布";
-      footer.append(draft);
-    }
-    card.append(top, heading, summary, footer);
-    return card;
-  };
-
   const createArticleItem = (article) => {
     const item = document.createElement("article");
     item.className = `article-item${article.markdown ? "" : " is-draft"}`;
-    const dateBlock = document.createElement("div");
-    dateBlock.className = "article-date-block";
-    const parsed = new Date(`${article.date}T00:00:00`);
-    dateBlock.innerHTML = `<strong>${String(parsed.getDate()).padStart(2, "0")}</strong><span>${String(parsed.getMonth() + 1).padStart(2, "0")} / ${parsed.getFullYear()}</span>`;
     const content = document.createElement("div");
     content.className = "article-item-content";
-    const meta = document.createElement("div");
-    meta.className = "article-item-meta";
-    meta.textContent = article.category || article.tags?.[0] || "随笔";
     const heading = document.createElement("h2");
     appendArticleLink(heading, article);
     const summary = document.createElement("p");
+    summary.className = "article-summary";
     summary.textContent = article.summary;
-    content.append(meta, heading, summary, createTagList(article.tags));
+    content.append(heading, summary);
     if (!article.markdown) {
       const label = document.createElement("span");
       label.className = "draft-label";
       label.textContent = "内容准备中";
       content.append(label);
     }
-    item.append(dateBlock, content);
+    const footer = document.createElement("footer");
+    footer.className = "article-item-footer";
+    const tags = document.createElement("ul");
+    tags.className = "article-item-tags";
+    tags.setAttribute("aria-label", "文章标签");
+    (article.tags || []).forEach((tag) => {
+      const tagItem = document.createElement("li");
+      tagItem.textContent = tag;
+      tags.append(tagItem);
+    });
+    const date = document.createElement("time");
+    date.className = "article-item-date";
+    date.dateTime = article.date;
+    date.textContent = formatDate(article);
+    footer.append(tags, date);
+    item.append(content, footer);
     return item;
   };
 
@@ -205,62 +172,38 @@
     return fragment;
   };
 
-  const renderLatestPosts = (articles) => {
-    document.querySelectorAll("[data-latest-posts]").forEach((container) => container.replaceChildren(...articles.slice(0, 4).map(createPostCard)));
-  };
-
   const renderArticleList = (articles) => {
     const container = document.querySelector("[data-article-list]");
-    const controls = document.querySelector("[data-filter-controls]");
     if (!container) return;
-    const categories = ["全部", ...new Set(articles.map((article) => article.category || "随笔"))];
+    const searchInput = document.querySelector("[data-article-search]");
+    const searchClear = document.querySelector("[data-search-clear]");
+    const result = document.querySelector("[data-search-result]");
     const requestedTag = new URLSearchParams(window.location.search).get("tag");
-    const draw = (category, tag = "") => {
-      const filtered = tag
-        ? articles.filter((article) => (article.tags || []).includes(tag))
-        : category === "全部" ? articles : articles.filter((article) => (article.category || "随笔") === category);
-      container.replaceChildren(...filtered.map(createArticleItem));
-      const result = document.querySelector("[data-filter-result]");
-      if (result) result.textContent = `${tag ? `# ${tag}` : category} · ${filtered.length} 篇`;
-    };
-    if (controls) {
-      controls.replaceChildren(...categories.map((category, index) => {
-        const button = document.createElement("button");
-        button.className = `filter-button${index === 0 ? " active" : ""}`;
-        button.type = "button";
-        button.textContent = category;
-        button.setAttribute("aria-pressed", String(index === 0));
-        button.addEventListener("click", () => {
-          controls.querySelectorAll("button").forEach((item) => { item.classList.remove("active"); item.setAttribute("aria-pressed", "false"); });
-          button.classList.add("active"); button.setAttribute("aria-pressed", "true"); draw(category);
-        });
-        return button;
-      }));
-    }
-    draw("全部", requestedTag || "");
-  };
+    const draw = (query = "") => {
+      const keyword = query.trim().toLocaleLowerCase("zh-CN");
+      const filtered = keyword ? articles.filter((article) => [
+        article.title,
+        article.summary,
+        ...(article.tags || [])
+      ].join(" ").toLocaleLowerCase("zh-CN").includes(keyword)) : articles;
 
-  const renderWidgets = (articles) => {
-    document.querySelectorAll("[data-recent-posts]").forEach((container) => {
-      const available = articles.filter((article) => article.markdown).slice(0, 4);
-      container.replaceChildren(...available.map((article) => {
-        const row = createLink(article.title, getArticleUrl(article), "recent-item");
-        const date = document.createElement("small"); date.textContent = article.date.slice(5).replace("-", "."); row.append(date); return row;
-      }));
-    });
-    const tags = [...new Set(articles.flatMap((article) => article.tags || []))];
-    document.querySelectorAll("[data-tag-cloud]").forEach((container) => {
-      container.replaceChildren(...tags.map((tag) => {
-        const link = createLink(`# ${tag}`, `${rootPath}posts.html?tag=${encodeURIComponent(tag)}`);
-        link.title = `查看 ${tag} 相关文章`;
-        return link;
-      }));
-    });
-    document.querySelectorAll("[data-site-stats]").forEach((container) => {
-      const values = container.querySelectorAll("strong");
-      if (values[0]) values[0].textContent = articles.length;
-      if (values[1]) values[1].textContent = tags.length;
-    });
+      if (filtered.length) container.replaceChildren(...filtered.map(createArticleItem));
+      else setStatus(container, `没有找到与“${query.trim()}”相关的文章。`);
+
+      if (result) result.textContent = keyword ? `找到 ${filtered.length} 篇相关文章` : `全部 ${articles.length} 篇文章`;
+      if (searchClear) searchClear.hidden = !keyword;
+    };
+
+    if (searchInput) {
+      if (requestedTag) searchInput.value = requestedTag;
+      searchInput.addEventListener("input", () => draw(searchInput.value));
+      searchClear?.addEventListener("click", () => {
+        searchInput.value = "";
+        draw();
+        searchInput.focus();
+      });
+    }
+    draw(requestedTag || "");
   };
 
   const renderArchive = (articles) => {
@@ -280,8 +223,7 @@
         const time = document.createElement("time"); time.dateTime = article.date; time.textContent = article.date.slice(5).replace("-", " / ");
         const content = document.createElement("div");
         const title = document.createElement("h3"); appendArticleLink(title, article);
-        const meta = document.createElement("p"); meta.textContent = `${article.category || "随笔"} · ${(article.tags || []).join(" / ")}`;
-        content.append(title, meta); item.append(time, content); list.append(item);
+        content.append(title); item.append(time, content); list.append(item);
       });
       section.append(heading, list); return section;
     });
@@ -310,13 +252,10 @@
     if (!response.ok) throw new Error(`Markdown request failed: ${response.status}`);
     const markdown = await response.text();
     const header = document.createElement("header"); header.className = "article-header";
-    const breadcrumb = document.createElement("p"); breadcrumb.className = "article-breadcrumb"; breadcrumb.textContent = `首页 / ${article.category || "文章"}`;
     const title = document.createElement("h1"); title.textContent = article.title;
     const meta = document.createElement("div"); meta.className = "article-meta";
-    const date = document.createElement("time"); date.dateTime = article.date; date.textContent = formatDate(article);
-    const wordCount = getMarkdownBody(markdown).replace(/\s/g, "").length;
-    const reading = document.createElement("span"); reading.textContent = `约 ${Math.max(1, Math.ceil(wordCount / 500))} 分钟阅读`;
-    meta.append(date, reading, createTagList(article.tags)); header.append(breadcrumb, title, meta);
+    const date = document.createElement("time"); date.dateTime = article.date; date.textContent = formatDate(article).replace(/\s/g, "");
+    meta.append(date); header.append(title, meta);
     const body = document.createElement("div"); body.className = "article-body"; body.append(renderMarkdown(markdown)); body.querySelector("p")?.classList.add("article-lead");
     const footer = document.createElement("footer"); footer.className = "article-footer";
     const note = document.createElement("div"); note.className = "article-end-note"; note.innerHTML = "<span>✦</span><strong>感谢阅读</strong><p>如果这篇文章对你有帮助，欢迎继续探索更多内容。</p>";
@@ -326,21 +265,21 @@
     if (newer) navigation.append(createLink(`← ${newer.title}`, getArticleUrl(newer)));
     if (older) navigation.append(createLink(`${older.title} →`, getArticleUrl(older)));
     footer.append(note, navigation); container.replaceChildren(header, body, footer); renderToc(body);
-    document.title = `${article.title} - MyBlog`;
+    document.title = `${article.title} - choppy`;
   };
 
   const loadBlog = async () => {
-    const targets = document.querySelectorAll("[data-latest-posts], [data-article-list], [data-article-slug], [data-archive-list], [data-recent-posts], [data-tag-cloud], [data-site-stats]");
+    const targets = document.querySelectorAll("[data-article-list], [data-article-slug], [data-archive-list]");
     if (!targets.length) return;
     try {
       const response = await fetch(manifestPath);
       if (!response.ok) throw new Error(`Manifest request failed: ${response.status}`);
       const articles = await response.json();
       articles.sort((a, b) => b.date.localeCompare(a.date));
-      renderLatestPosts(articles); renderArticleList(articles); renderWidgets(articles); renderArchive(articles); await renderArticlePage(articles);
+      renderArticleList(articles); renderArchive(articles); await renderArticlePage(articles);
     } catch (error) {
       console.error("博客内容加载失败：", error);
-      document.querySelectorAll("[data-latest-posts], [data-article-list], [data-article-slug], [data-archive-list]").forEach((target) => setStatus(target, "文章加载失败，请通过本地静态服务器预览或稍后重试。", true));
+      document.querySelectorAll("[data-article-list], [data-article-slug], [data-archive-list]").forEach((target) => setStatus(target, "文章加载失败，请通过本地静态服务器预览或稍后重试。", true));
     }
   };
 
