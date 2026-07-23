@@ -46,32 +46,4 @@
     updateReadingProgress();
   }
   document.querySelectorAll("[data-current-year]").forEach((node) => { node.textContent = new Date().getFullYear(); });
-
-  const searchInput = document.querySelector("[data-article-search]");
-  const searchClear = document.querySelector("[data-search-clear]");
-  const searchResult = document.querySelector("[data-search-result]");
-  const searchEmpty = document.querySelector("[data-search-empty]");
-  const articleItems = [...document.querySelectorAll("[data-article-item]")];
-  const drawSearch = (query = "") => {
-    const keyword = query.trim().toLocaleLowerCase("zh-CN");
-    let visible = 0;
-    articleItems.forEach((item) => {
-      const match = !keyword || item.dataset.searchText.includes(keyword);
-      item.hidden = !match;
-      if (match) visible += 1;
-    });
-    if (searchClear) searchClear.hidden = !keyword;
-    if (searchEmpty) {
-      searchEmpty.hidden = visible !== 0;
-      searchEmpty.textContent = `没有找到与“${query.trim()}”相关的文章。`;
-    }
-    if (searchResult) searchResult.textContent = keyword ? `找到 ${visible} 篇相关文章` : `全部 ${articleItems.length} 篇文章`;
-  };
-  if (searchInput) {
-    const requestedTag = new URLSearchParams(location.search).get("tag") || "";
-    searchInput.value = requestedTag;
-    searchInput.addEventListener("input", () => drawSearch(searchInput.value));
-    searchClear?.addEventListener("click", () => { searchInput.value = ""; drawSearch(); searchInput.focus(); });
-    drawSearch(requestedTag);
-  }
 })();

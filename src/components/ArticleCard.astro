@@ -5,7 +5,10 @@ import { formatDate, getReadingTime, getSummary, postPath } from "../lib/blog";
 interface Props { post: BlogPost }
 const { post } = Astro.props;
 const summary = getSummary(post);
-const searchText = [post.data.title, summary, ...post.data.tags].join(" ").toLocaleLowerCase("zh-CN");
+const searchText = [post.data.title, summary, ...post.data.tags]
+  .join(" ")
+  .normalize("NFKC")
+  .toLocaleLowerCase("zh-CN");
 ---
 
 <article class:list={["article-item", { "is-draft": post.data.draft }]} data-article-item data-search-text={searchText}>

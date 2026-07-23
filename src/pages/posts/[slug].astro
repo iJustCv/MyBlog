@@ -36,7 +36,7 @@ const summary = getSummary(post);
           <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
           <span aria-hidden="true">·</span><span>{getReadingTime(post)} 分钟阅读</span>
           {post.data.tags.length > 0 && <span aria-hidden="true">·</span>}
-          {post.data.tags.map((tag) => <span class="article-meta-tag">#{tag}</span>)}
+          {post.data.tags.map((tag) => <span class="article-meta-tag">{tag}</span>)}
         </div>
       </header>
       <div class="article-body"><Content /></div>

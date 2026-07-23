@@ -26,4 +26,48 @@ const posts = sortPosts(await getCollection("blog"));
       </section>
     </div>
   </main>
+  <script>
+  const searchInput = document.querySelector<HTMLInputElement>("[data-article-search]");
+
+  if (searchInput) {
+    const searchClear = document.querySelector<HTMLButtonElement>("[data-search-clear]");
+    const searchResult = document.querySelector<HTMLElement>("[data-search-result]");
+    const searchEmpty = document.querySelector<HTMLElement>("[data-search-empty]");
+    const articleItems = [...document.querySelectorAll<HTMLElement>("[data-article-item]")];
+    const normalize = (value: string) => value.normalize("NFKC").toLocaleLowerCase("zh-CN").trim();
+
+    const filterArticles = (query = "") => {
+      const terms = normalize(query).split(/\s+/).filter(Boolean);
+      let visible = 0;
+
+      articleItems.forEach((item) => {
+        const searchText = item.dataset.searchText ?? "";
+        const matches = terms.every((term) => searchText.includes(term));
+        item.hidden = !matches;
+        if (matches) visible += 1;
+      });
+
+      if (searchClear) searchClear.hidden = terms.length === 0;
+      if (searchEmpty) {
+        searchEmpty.hidden = visible !== 0;
+        searchEmpty.textContent = `没有找到与“${query.trim()}”相关的文章。`;
+      }
+      if (searchResult) {
+        searchResult.textContent = terms.length > 0
+          ? `找到 ${visible} 篇相关文章`
+          : `全部 ${articleItems.length} 篇文章`;
+      }
+    };
+
+    const requestedTag = new URLSearchParams(location.search).get("tag") ?? "";
+    searchInput.value = requestedTag;
+    searchInput.addEventListener("input", () => filterArticles(searchInput.value));
+    searchClear?.addEventListener("click", () => {
+      searchInput.value = "";
+      filterArticles();
+      searchInput.focus();
+    });
+    filterArticles(requestedTag);
+  }
+  </script>
 </BaseLayout>
