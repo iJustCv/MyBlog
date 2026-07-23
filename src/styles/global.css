@@ -238,7 +238,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid color-mix(in srgb, va
 .article-item-tags { display: flex; margin: 0; padding: 0; flex-wrap: wrap; gap: 6px 10px; list-style: none; }
 .article-item-tags li { color: var(--muted); font-size: .7rem; }
 .article-item-tags li::before { margin-right: 1px; color: var(--cyan); content: "#"; }
-.article-item-date { margin-left: auto; flex: none; color: var(--muted); font-size: .7rem; text-align: right; }
+.article-item-date { flex: none; color: var(--muted); font-size: .7rem; text-align: right; }
+.article-item-stats { display: flex; margin-left: auto; flex: none; flex-direction: column; align-items: flex-end; gap: 3px; color: var(--muted); font-size: .7rem; }
 .archive-cta { display: flex; flex-direction: column; color: var(--muted); font-size: .76rem; }
 .archive-cta strong { margin-top: 5px; color: var(--purple); font-size: .88rem; }
 
@@ -250,6 +251,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid color-mix(in srgb, va
 .article-header { margin-bottom: 42px; padding-bottom: 30px; border-bottom: 1px solid var(--border); }
 .article-header h1 { margin: 0; color: var(--heading); font-size: clamp(2.1rem, 5vw, 3.25rem); line-height: 1.22; letter-spacing: -.045em; }
 .article-meta { display: flex; margin-top: 20px; align-items: center; flex-wrap: wrap; gap: 8px; color: var(--muted); font-size: .75rem; }
+.article-meta-tag { color: var(--muted); }
 .article-header, .article-body, .article-footer { max-width: 680px; margin-inline: auto; }
 .article-body { color: var(--text); font-size: 1.01rem; line-height: 1.95; }
 .article-body .article-lead { margin-bottom: 2.2rem; color: color-mix(in srgb, var(--heading) 88%, var(--text)); font-size: 1.1rem; }

@@ -1,22 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c07445dd-6638-48f6-b444-2560070f90d2" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/content/blog/test02.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/about.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/archive.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/choppy-avatar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/blog.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/theme-init.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts/articles/articles.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts/first-post.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts/first-post.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts/test.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+    <list default="true" id="c07445dd-6638-48f6-b444-2560070f90d2" name="更改" comment="迁移Astro">
+      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +12,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "iJustCv"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/iJustCv/MyBlog.git",
+    "accountId": "a30439da-7664-4b2f-a827-021c7efa2041"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6,
   &quot;fromUser&quot;: false
@@ -49,6 +47,7 @@
     "last_opened_file_path": "D:/Blog/MyBlog",
     "nodejs_package_manager_path": "npm",
     "npm.dev.executor": "Run",
+    "ts.external.directory.path": "D:\\Blog\\MyBlog\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -86,11 +85,24 @@
       <updated>1784564577860</updated>
       <workItem from="1784564578947" duration="236000" />
       <workItem from="1784724079167" duration="9644000" />
-      <workItem from="1784817769576" duration="906000" />
+      <workItem from="1784817769576" duration="2054000" />
     </task>
+    <task id="LOCAL-00001" summary="迁移Astro">
+      <option name="closed" value="true" />
+      <created>1784818795424</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1784818795424</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="迁移Astro" />
+    <option name="LAST_COMMIT_MESSAGE" value="迁移Astro" />
   </component>
 </project>

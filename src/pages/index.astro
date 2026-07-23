@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import ArticleCard from "../components/ArticleCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { sortPosts } from "../lib/blog";
+
+const posts = sortPosts(await getCollection("blog"));
+---
+
+<BaseLayout title="文章" description="Choooppy 的个人博客，记录技术学习、项目实践与生活思考。" active="home">
+  <main class="wide-container home-articles" id="articles">
+    <div class="main-column">
+      <section class="home-feed" aria-labelledby="articles-title">
+        <div class="section-heading"><div><h1 id="articles-title">文章</h1></div></div>
+        <div class="article-search" role="search">
+          <span class="search-icon" aria-hidden="true"></span>
+          <label class="sr-only" for="article-search-input">搜索文章</label>
+          <input id="article-search-input" type="search" placeholder="输入关键词" autocomplete="off" data-article-search />
+          <button class="search-clear" type="button" aria-label="清空搜索" title="清空搜索" data-search-clear hidden>×</button>
+        </div>
+        <p class="search-result" aria-live="polite" data-search-result>全部 {posts.length} 篇文章</p>
+        <div class="article-list" aria-label="文章列表" data-article-list>
+          {posts.map((post) => <ArticleCard post={post} />)}
+          <p class="content-status" data-search-empty hidden>没有找到相关文章。</p>
+        </div>
+      </section>
+    </div>
+  </main>
+</BaseLayout>

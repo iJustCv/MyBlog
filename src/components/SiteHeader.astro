@@ -1,0 +1,40 @@
+---
+import { basePath } from "../lib/blog";
+
+interface Props {
+  active?: "home" | "archive" | "about";
+}
+
+const { active } = Astro.props;
+const navItems = [
+  { key: "home", label: "首页", href: basePath("/") },
+  { key: "archive", label: "归档", href: basePath("/archive/") },
+  { key: "about", label: "关于", href: basePath("/about/") },
+];
+---
+
+<header class="site-header">
+  <nav class="wide-container nav-container" aria-label="主导航">
+    <a class="site-brand" href={basePath("/")} aria-label="Choooppy 首页">
+      <img class="brand-avatar" src={basePath("/images/choooppy-avatar.png")} alt="" />
+      <span>Choooppy</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+      <span class="sr-only">展开导航</span><span aria-hidden="true">☰</span>
+    </button>
+    <ul class="nav-links" id="site-menu">
+      {navItems.map((item) => (
+        <li>
+          <a
+            class:list={["nav-link", { active: active === item.key }]}
+            href={item.href}
+            aria-current={active === item.key ? "page" : undefined}
+          >{item.label}</a>
+        </li>
+      ))}
+    </ul>
+    <button class="theme-switcher" type="button" aria-label="切换深色模式">
+      <span class="theme-switcher-icon" aria-hidden="true">☾</span>
+    </button>
+  </nav>
+</header>

@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
+    <title>正在前往文章 - Choooppy</title>
+    <script>
+      const slug = new URLSearchParams(location.search).get("article") || "first-post";
+      location.replace(`/posts/${encodeURIComponent(slug)}/`);
+    </script>
+    <noscript><meta http-equiv="refresh" content="0; url=/posts/first-post/" /></noscript>
+  </head>
+  <body></body>
+</html>

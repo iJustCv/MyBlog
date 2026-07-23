@@ -1,0 +1,61 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatDate, getReadingTime, getSummary, postPath, sortPosts } from "../../lib/blog";
+
+export async function getStaticPaths() {
+  const posts = sortPosts((await getCollection("blog")).filter((post) => !post.data.draft));
+  return posts.map((post, index) => ({
+    params: { slug: post.id },
+    props: {
+      post,
+      newer: posts[index - 1],
+      older: posts[index + 1],
+    },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<"blog">;
+  newer?: CollectionEntry<"blog">;
+  older?: CollectionEntry<"blog">;
+}
+
+const { post, newer, older } = Astro.props;
+const { Content, headings } = await render(post);
+const toc = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
+const summary = getSummary(post);
+---
+
+<BaseLayout title={post.data.title} description={summary} active="home" type="article">
+  <main class="wide-container article-shell article-shell-clean">
+    <article class="article-content">
+      <header class="article-header">
+        <h1>{post.data.title}</h1>
+        <div class="article-meta">
+          <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+          <span aria-hidden="true">·</span><span>{getReadingTime(post)} 分钟阅读</span>
+          {post.data.tags.length > 0 && <span aria-hidden="true">·</span>}
+          {post.data.tags.map((tag) => <span class="article-meta-tag">#{tag}</span>)}
+        </div>
+      </header>
+      <div class="article-body"><Content /></div>
+      <footer class="article-footer">
+        <div class="article-end-note"><span>✦</span><strong>感谢阅读</strong><p>如果这篇文章对你有帮助，欢迎继续探索更多内容。</p></div>
+        <nav class="post-navigation" aria-label="文章导航">
+          {newer && <a href={postPath(newer)}>← {newer.data.title}</a>}
+          {older && <a href={postPath(older)}>{older.data.title} →</a>}
+        </nav>
+      </footer>
+    </article>
+    <aside class="article-toc-sidebar">
+      <section class="sidebar-card toc-card">
+        <h2>文章目录</h2>
+        <nav class="article-toc" aria-label="文章目录">
+          {toc.length > 0 ? toc.map((heading) => <a class:list={{ "toc-sub": heading.depth === 3 }} href={`#${heading.slug}`}>{heading.text}</a>) : <span class="mini-status">本文暂无章节</span>}
+        </nav>
+        <div class="reading-progress"><span data-reading-progress></span></div>
+      </section>
+    </aside>
+  </main>
+</BaseLayout>

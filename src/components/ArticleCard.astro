@@ -1,0 +1,26 @@
+---
+import type { BlogPost } from "../lib/blog";
+import { formatDate, getReadingTime, getSummary, postPath } from "../lib/blog";
+
+interface Props { post: BlogPost }
+const { post } = Astro.props;
+const summary = getSummary(post);
+const searchText = [post.data.title, summary, ...post.data.tags].join(" ").toLocaleLowerCase("zh-CN");
+---
+
+<article class:list={["article-item", { "is-draft": post.data.draft }]} data-article-item data-search-text={searchText}>
+  <div class="article-item-content">
+    <h2>{post.data.draft ? <span>{post.data.title}</span> : <a href={postPath(post)}>{post.data.title}</a>}</h2>
+    <p class="article-summary">{summary}</p>
+    {post.data.draft && <span class="draft-label">内容准备中</span>}
+  </div>
+  <footer class="article-item-footer">
+    <ul class="article-item-tags" aria-label="文章标签">
+      {post.data.tags.map((tag) => <li>{tag}</li>)}
+    </ul>
+    <div class="article-item-stats">
+      {!post.data.draft && <span>{getReadingTime(post)} 分钟阅读</span>}
+      <time class="article-item-date" datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+    </div>
+  </footer>
+</article>

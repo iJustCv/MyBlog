@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { postPath, sortPosts } from "../lib/blog";
+
+const posts = sortPosts(await getCollection("blog"));
+const groups = Object.groupBy(posts, (post) => String(post.data.date.getFullYear()));
+---
+
+<BaseLayout title="文章归档" description="按时间浏览 Choooppy 的全部文章。" active="archive">
+  <main class="wide-container archive-only">
+    <h1>归档</h1>
+    <div class="archive-timeline">
+      {Object.entries(groups).map(([year, items]) => (
+        <section class="archive-year">
+          <div class="archive-year-heading"><h2>{year}</h2><span>{items?.length ?? 0} 篇</span></div>
+          <div class="archive-year-list">
+            {items?.map((post) => (
+              <article class:list={["archive-item", { "is-draft": post.data.draft }]}>
+                <time datetime={post.data.date.toISOString()}>{String(post.data.date.getMonth() + 1).padStart(2, "0")} / {String(post.data.date.getDate()).padStart(2, "0")}</time>
+                <div><h3>{post.data.draft ? <span>{post.data.title}</span> : <a href={postPath(post)}>{post.data.title}</a>}</h3></div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </main>
+</BaseLayout>

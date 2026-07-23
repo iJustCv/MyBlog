@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
+    <title>正在前往文章列表 - Choooppy</title>
+    <script>
+      const tag = new URLSearchParams(location.search).get("tag");
+      location.replace(`/${tag ? `?tag=${encodeURIComponent(tag)}` : ""}#articles`);
+    </script>
+    <noscript><meta http-equiv="refresh" content="0; url=/#articles" /></noscript>
+  </head>
+  <body></body>
+</html>

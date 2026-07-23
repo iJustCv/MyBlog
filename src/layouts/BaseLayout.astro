@@ -1,0 +1,52 @@
+---
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { basePath } from "../lib/blog";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  active?: "home" | "archive" | "about";
+  image?: string;
+  type?: "website" | "article";
+}
+
+const {
+  title,
+  description,
+  active,
+  image = basePath("/images/choooppy-avatar.png"),
+  type = "website",
+} = Astro.props;
+const pageTitle = title === "Choooppy" ? title : `${title} - Choooppy`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Choooppy" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="Choooppy" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" type="image/png" href={basePath("/images/choooppy-avatar.png")} />
+    <title>{pageTitle}</title>
+    <script is:inline src={basePath("/js/theme-init.js")}></script>
+  </head>
+  <body>
+    <SiteHeader active={active} />
+    <slot />
+    <SiteFooter />
+    <script is:inline src={basePath("/js/main.js")}></script>
+  </body>
+</html>
