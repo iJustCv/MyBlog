@@ -230,6 +230,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid color-mix(in srgb, va
 .search-result { min-height: 22px; margin: 0 2px 16px; color: var(--muted); font-size: .74rem; }
 .article-list { display: flex; flex-direction: column; gap: 13px; }
 .article-item { display: flex; padding: 24px; flex-direction: column; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); transition: border-color .2s ease, transform .2s ease; }
+.article-item[hidden] { display: none; }
 .article-item:hover { border-color: color-mix(in srgb, var(--purple) 42%, var(--border)); transform: translateY(-2px); }
 .article-item h2 { margin: 0 0 7px; font-size: 1.18rem; line-height: 1.4; }
 .article-summary { margin: 0; color: var(--muted); font-size: .86rem; }
