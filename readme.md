@@ -1,70 +1,60 @@
-# choppy
+# Choooppy
 
-一个部署在 GitHub Pages 上的纯静态个人博客。视觉设计借鉴 Stellar 的简洁、留白与知识库式布局，并加入克制的紫色、青色和星空元素。
+Choooppy 是一个部署在 GitHub Pages 上的 Astro 静态个人博客。迁移保留了原站的布局、颜色、字体效果、动画和交互，文章改由 Astro Content Collections 自动管理。
 
 ## 技术栈
 
-- HTML5
-- CSS3
-- 原生 JavaScript
-- GitHub Pages
+- Astro
+- Astro Content Collections
+- Markdown
+- 原生 CSS 与 JavaScript
+- GitHub Pages / GitHub Actions
 
-项目不依赖 Hexo、Node.js 构建流程或前端框架。
+## 本地运行
 
-## 项目结构
-
-- `index.html`：博客首页
-- `posts.html`：旧文章列表地址的兼容跳转页
-- `archive.html`：按年份展示的文章归档
-- `about.html`：关于页面
-- `posts/first-post.html`：所有 Markdown 文章共用的阅读页面
-- `posts/*.md`：Markdown 文章
-- `posts/articles/articles.json`：文章清单与展示信息
-- `css/style.css`：全站布局、组件、响应式与深色模式
-- `js/blog.js`：文章列表、归档、侧边栏与 Markdown 渲染
-- `js/main.js`：导航、主题切换、阅读进度与返回顶部
-- `js/theme-init.js`：页面加载前初始化主题
-- `images/`：图片资源
-
-## 本地预览
-
-Markdown 和 JSON 内容通过 `fetch` 读取，因此不能直接使用 `file://` 打开。请在项目目录运行静态服务器：
+需要 Node.js 22.12 或更高版本。
 
 ```powershell
-python -m http.server 8000
+pnpm install
+pnpm dev
 ```
 
-然后访问 `http://localhost:8000/`。
+默认访问 Astro 输出的本地地址。生产构建与预览：
 
-## 发布 Markdown 文章
-
-1. 在 `posts/` 中创建 Markdown 文件，例如 `posts/my-new-post.md`。
-2. 在 `posts/articles/articles.json` 中新增一条记录：
-
-```json
-{
-  "slug": "my-new-post",
-  "title": "文章标题",
-  "date": "2026-07-22",
-  "dateText": "2026 年 7 月 22 日",
-  "summary": "文章摘要",
-  "category": "技术",
-  "tags": ["JavaScript", "Web"],
-  "markdown": "posts/my-new-post.md"
-}
+```powershell
+pnpm build
+pnpm preview
 ```
 
-文章会自动出现在首页文章列表和归档页面中。阅读页继续由 `posts/first-post.html` 动态渲染，不需要为每篇文章创建 HTML。
+## 发布文章
 
-如果 `markdown` 为 `null`，文章会显示为“即将发布”，不会产生空链接。
+在 `src/content/blog/` 新建一个 Markdown 文件，例如 `my-new-post.md`：
 
-## 主题与响应式
+```markdown
+---
+title: 文章标题
+date: 2026-07-23
+---
 
-- 默认跟随系统浅色或深色偏好。
-- 用户手动切换后会将选择保存在浏览器本地。
-- 桌面端采用侧边栏、主内容、组件栏布局。
-- 平板和手机端自动合并为单栏，并提供折叠导航。
+从这里开始写正文。
+```
+
+只需要 `title` 和 `date`。文件名会成为文章地址，摘要、阅读时间、列表、归档、目录和文章前后导航都在构建时自动生成。
+
+标签可按需添加：
+
+```yaml
+tags: [Astro, 博客]
+```
+
+未完成的占位文章可以添加 `draft: true`，它会保留在列表与归档中并显示“内容准备中”，但不会生成详情页。
 
 ## GitHub Pages
 
-项目保留 `.nojekyll`，所有资源均使用兼容 GitHub Project Pages 的相对路径。继续将仓库分支配置为 GitHub Pages 发布源即可，无需额外构建步骤。
+工作流位于 `.github/workflows/deploy.yml`。推送到 `main` 后，GitHub Actions 会自动安装依赖、构建并部署 `dist/`。
+
+首次使用时，在仓库 `Settings → Pages → Build and deployment → Source` 中选择 `GitHub Actions`。
+
+当前配置保留现有自定义域名 `https://blog.choooppy.com/`，`public/CNAME` 会随构建产物一起部署。请保留现有 DNS 记录，并在 GitHub Pages 设置中启用 `Enforce HTTPS`。
+
+如果将来取消自定义域名、改回 Project Pages 地址，需要删除 `public/CNAME`，把 `astro.config.mjs` 的 `site` 改为 `https://iJustCv.github.io`，并添加 `base: "/MyBlog"`。

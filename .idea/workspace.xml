@@ -2,14 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c07445dd-6638-48f6-b444-2560070f90d2" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/src/content/blog/test02.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archive.html" beforeDir="false" afterPath="$PROJECT_DIR$/archive.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/blog.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/blog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts.html" beforeDir="false" afterPath="$PROJECT_DIR$/posts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts/first-post.html" beforeDir="false" afterPath="$PROJECT_DIR$/posts/first-post.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/about.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/choppy-avatar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/blog.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/theme-init.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/articles/articles.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/first-post.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/first-post.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/test.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +39,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
@@ -40,9 +48,27 @@
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Blog/MyBlog",
     "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -59,7 +85,8 @@
       <option name="presentableId" value="Default" />
       <updated>1784564577860</updated>
       <workItem from="1784564578947" duration="236000" />
-      <workItem from="1784724079167" duration="9455000" />
+      <workItem from="1784724079167" duration="9644000" />
+      <workItem from="1784817769576" duration="906000" />
     </task>
     <servers />
   </component>
