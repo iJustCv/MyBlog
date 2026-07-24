@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c07445dd-6638-48f6-b444-2560070f90d2" name="更改" comment="配置 Astro GitHub Pages 自动部署">
-      <change beforePath="$PROJECT_DIR$/public/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ArticleCard.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ArticleCard.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/posts/[slug].astro" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/posts/[slug].astro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global.css" afterDir="false" />
-    </list>
+    <list default="true" id="c07445dd-6638-48f6-b444-2560070f90d2" name="更改" comment="完善搜索功能" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,7 +83,7 @@
       <updated>1784564577860</updated>
       <workItem from="1784564578947" duration="236000" />
       <workItem from="1784724079167" duration="9644000" />
-      <workItem from="1784817769576" duration="2828000" />
+      <workItem from="1784817769576" duration="3277000" />
     </task>
     <task id="LOCAL-00001" summary="迁移Astro">
       <option name="closed" value="true" />
@@ -107,7 +101,23 @@
       <option name="project" value="LOCAL" />
       <updated>1784819903002</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="修改tag样式，完善搜索功能">
+      <option name="closed" value="true" />
+      <created>1784820647419</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1784820647419</updated>
+    </task>
+    <task id="LOCAL-00004" summary="完善搜索功能">
+      <option name="closed" value="true" />
+      <created>1784821011848</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1784821011848</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,6 +138,8 @@
     <MESSAGE value="Merge remote-tracking branch 'origin/main'" />
     <MESSAGE value="迁移Astro" />
     <MESSAGE value="配置 Astro GitHub Pages 自动部署" />
-    <option name="LAST_COMMIT_MESSAGE" value="配置 Astro GitHub Pages 自动部署" />
+    <MESSAGE value="修改tag样式，完善搜索功能" />
+    <MESSAGE value="完善搜索功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善搜索功能" />
   </component>
 </project>
